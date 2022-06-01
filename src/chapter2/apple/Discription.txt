@@ -1,0 +1,3 @@
+By taking forming classes AppleSimpleFormatter, AppleFancyFormatter and AppleFormatter interface we now able to print description
+in easy way by simply adding new class AppleFormatter  implements AppleFormatter interface. Thus we don't need to write ugly code
+and refactor it each time we want to change our text output in ApplePrinter
