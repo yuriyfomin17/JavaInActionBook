@@ -1,5 +1,5 @@
 <h1>Notes</h1>
-<p>Lambda  is a concise representation of anonymous function that can be passed around in a concise way.</p>
+<p><strong>Lambda</strong>  is a concise representation of anonymous function that can be passed around in a concise way.</p>
 <ul>
 <li>Anonymous - it doesn't have an explicit name</li>
 <li>Function - it is not associated with a particular class. It can have list of parameters, body, a return type and list of exceptions</li>
@@ -7,7 +7,7 @@
 <li>Concise - you don't need a boilerplate code to write a lambda</li>
 </ul>
 <br/>
-<p>Anonymous Interface is a interface with one method exactly</p>
+<p><strong>Anonymous Interface</strong> is a interface with one method exactly</p>
 <p>Example: <code>interface Predicate T {boolean test(T t)} </code>. Other examples of functional interfaces are Comparator, Runnable, ActionListener, Callable, PrivilegedAction
 </p>
 
@@ -34,3 +34,19 @@ public static void process(Runnable r){
 <br/>
 <code>process(r2)</code>
 </p>
+<p>
+<strong>Examples of interface:</strong>
+Predicate - method name(test -> boolean), Consumer - method name(accept -> void), Function (T, R) - interface defines an abstract method name( R apply (T t)) that accepts generic type T as input and returns generic type R as output
+</p>
+<p>Also, Java 8 allows to utilize interfaces without boxing. Example 
+<code>IntPredicate evenNumbers = (int i) -> i % 2 == 0</code>(no boxing),
+<code>Predicate(Integers) oddNumbers = (Integer i) -> i % 2 == 1</code>(boxing)
+</p>
+<p><strong>Local Variable</strong> - lambda can only use captured local variable that are final. You can't modify them later on</p>
+<ul>
+<li>Local variables are stored in stack and instance variables are stored in heap </li>
+<li>Each thread gets its own stack. Hence, each thread will have its own copy of local variable. Workaround is to allows lambada to utilize variable from heap</li>
+<li>Restriction exists because local variable live on the stack and implicitly confined to the thread they are on</li>
+<li>Allowing to capture mutable local variable is thread unsafe. Instance variables are fine because they live on heap which is shared across threads</li>
+
+</ul>
