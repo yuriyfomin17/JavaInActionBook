@@ -48,5 +48,5 @@ Predicate - method name(test -> boolean), Consumer - method name(accept -> void)
 <li>Each thread gets its own stack. Hence, each thread will have its own copy of local variable. Workaround is to allows lambada to utilize variable from heap</li>
 <li>Restriction exists because local variable live on the stack and implicitly confined to the thread they are on</li>
 <li>Allowing to capture mutable local variable is thread unsafe. Instance variables are fine because they live on heap which is shared across threads</li>
-
 </ul>
+<p><strong>Stream</strong> is an api that allows to manipulate with collection. Big advantage of streams is that they allow to process data in parallel and run code in parallel</p>
