@@ -50,3 +50,13 @@ Predicate - method name(test -> boolean), Consumer - method name(accept -> void)
 <li>Allowing to capture mutable local variable is thread unsafe. Instance variables are fine because they live on heap which is shared across threads</li>
 </ul>
 <p><strong>Stream</strong> is an api that allows to manipulate with collection. Big advantage of streams is that they allow to process data in parallel and run code in parallel</p>
+<p><strong>Stream</strong> is a sequence of elements from the source that supports data processing operations</p>
+<ul>
+<li><strong>Sequence of elements</strong> - stream provides and interface to sequenced set of values of a specific element type. Collections are data structures, they are about storing and accessing elements with specific time/space complexities.
+Collections are about data; stream are about computations (filter, sorted, map)
+</li>
+<li><strong>Source</strong> - streams consume from a data-providing source such as collections, arrays, or I/O resources. Generating stream from an ordered collection preserves the ordering</li>
+<li><strong>Data processing operations</strong> - streams support database like operations from functional programming languages such as filter, map, reduce, find, match, sort</li>
+<li><strong>Pipelining</strong> - many stream return stream themselves, allowing operations to be chained and form a larger pipeline.Hence, certain optimizations can be achieved such as laziness and short-circuiting</li>
+<li><strong>Internal iteration</strong> - in contrast to collections, which are iterated explicitly using iterator, stream operations do the iteration behind the scenes for you.</li>
+</ul>
