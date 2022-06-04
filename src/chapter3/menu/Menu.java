@@ -29,6 +29,17 @@ public class Menu {
                 .map(Dish::getName)
                 .collect(Collectors.toList());
     }
+    public List<Dish> getFirstTwoMeatDishes(){
+        return this.menuList.parallelStream()
+                .filter(Dish::isMeatDish)
+                .limit(2)
+                .collect(Collectors.toList());
+    }
+    public List<Integer> getDishNameLengths(){
+        return this.menuList.parallelStream()
+                .map((Dish dish) -> dish.getName().length())
+                .collect(Collectors.toList());
+    }
 
     public static void main(String[] args) {
 
@@ -37,5 +48,10 @@ public class Menu {
         addSpecificDishes.addTenRandomDishes();
         System.out.println(menu);
         System.out.println(menu.getLowCaloriesSortedDishes());
+
+        List<Dish> dishes = menu.getFirstTwoMeatDishes();
+        dishes.forEach(System.out::println);
+        List<Integer> dishesNameLengths = menu.getDishNameLengths();
+        dishesNameLengths.forEach(System.out::println);
     }
 }

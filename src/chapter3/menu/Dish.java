@@ -32,6 +32,9 @@ public class Dish {
     public Type getType(){
         return type;
     }
+    public boolean isMeatDish(){
+        return this.getType().equals(Type.MEAT);
+    }
 
     @Override
     public String toString(){
