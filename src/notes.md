@@ -60,3 +60,7 @@ Collections are about data; stream are about computations (filter, sorted, map)
 <li><strong>Pipelining</strong> - many stream return stream themselves, allowing operations to be chained and form a larger pipeline.Hence, certain optimizations can be achieved such as laziness and short-circuiting</li>
 <li><strong>Internal iteration</strong> - in contrast to collections, which are iterated explicitly using iterator, stream operations do the iteration behind the scenes for you.</li>
 </ul>
+<p><strong>Collections vs Streams</strong> - difference between collections and streams are in the way things are computed. A collection is in-memory data structure that holds every element in collection has to be computed before it can be added to collection</p>
+<p>In contrast stream is conceptually fixed data structure where elements are computed on demand (in management speak this is demand driven).</p>
+<p>Good example is with dvd and internet movie. In dvd all data is stored in disk, while in internet movie  value a computed only as they needed</p>
+<p>Stream can be traversed only once. From philosophical viewpoints in stream values are distributed in time while in collections values are distributed in space (memory).</p>
