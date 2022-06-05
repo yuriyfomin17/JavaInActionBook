@@ -1,8 +1,6 @@
 package chapter3.menu;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -40,6 +38,23 @@ public class Menu {
                 .map((Dish dish) -> dish.getName().length())
                 .collect(Collectors.toList());
     }
+    public boolean allMealsAreVegetarian(){
+        return this.menuList.parallelStream().allMatch(Dish::isVegetarian);
+    }
+    public boolean anyMealIsHealthy(){
+        return this.menuList.parallelStream().anyMatch(dish -> dish.getCalories() < 1000);
+    }
+
+    public void findAnyVegetarianDish(){
+        Optional<Dish> dish = this.menuList.parallelStream().filter(Dish::isVegetarian).findAny( );
+        dish.ifPresent(value -> System.out.println("Vegetarian: " + value));
+
+        this.menuList.parallelStream().filter(Dish::isVegetarian).findAny().ifPresent(System.out::println);
+    }
+    public int numberOfDishes(){
+        return this.menuList.stream().map(dish -> 1).reduce( 0, Integer::sum);
+    }
+
 
     public static void main(String[] args) {
 
@@ -53,5 +68,9 @@ public class Menu {
         dishes.forEach(System.out::println);
         List<Integer> dishesNameLengths = menu.getDishNameLengths();
         dishesNameLengths.forEach(System.out::println);
+        menu.findAnyVegetarianDish();
+        System.out.println("sum of all calories:" + menu.numberOfDishes());
+
+
     }
 }
