@@ -44,6 +44,34 @@ public class Menu {
     public boolean anyMealIsHealthy(){
         return this.menuList.parallelStream().anyMatch(dish -> dish.getCalories() < 1000);
     }
+    public void getMostCalorieDish(){
+        System.out.println("getMostCalorieDish");
+        Optional<Dish> dish = this.menuList.stream().max(Comparator.comparingInt(Dish::getCalories));
+        dish.ifPresent(aDish -> System.out.println(aDish.getName()));
+    }
+    public void getTotalCalories(){
+        System.out.println("getTotalCalories");
+        int totalCalories = this.menuList.stream().map(Dish::getCalories).reduce(0, Integer::sum);
+        System.out.println(totalCalories);
+    }
+    public void getAverageCalories(){
+        System.out.println("Average Calories");
+        double averageCalories = this.menuList.stream().collect(Collectors.averagingInt(Dish::getCalories));
+        System.out.println(averageCalories);
+    }
+
+    public void getMenuStatistics(){
+        System.out.println("Menu Statistics");
+        IntSummaryStatistics intSummaryStatistics = this.menuList.stream().collect(Collectors.summarizingInt(Dish::getCalories));
+        System.out.println("Max:" + intSummaryStatistics.getMax());
+        System.out.println("Mean:" + intSummaryStatistics.getAverage());
+        System.out.println("Min:" + intSummaryStatistics.getMin());
+    }
+    public void getMenuString(){
+        System.out.println("Menu String");
+        String menuName = this.menuList.stream().map(Dish::getName).collect(Collectors.joining(","));
+        System.out.println("MenuName:" + menuName);
+    }
 
     public void findAnyVegetarianDish(){
         Optional<Dish> dish = this.menuList.parallelStream().filter(Dish::isVegetarian).findAny( );
@@ -70,7 +98,10 @@ public class Menu {
         dishesNameLengths.forEach(System.out::println);
         menu.findAnyVegetarianDish();
         System.out.println("sum of all calories:" + menu.numberOfDishes());
-
-
+        menu.getMostCalorieDish();
+        menu.getTotalCalories();
+        menu.getAverageCalories();
+        menu.getMenuStatistics();
+        menu.getMenuString();
     }
 }
