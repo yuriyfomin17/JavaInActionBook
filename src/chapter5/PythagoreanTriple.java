@@ -3,9 +3,9 @@ package chapter5;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.IntSupplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -48,12 +48,42 @@ public class PythagoreanTriple {
         Stream.iterate(0, x -> x + 2).limit(10).forEach(System.out::println);
 
     }
+    public static void generateFibonacci(){
+        System.out.println("Fibonacci\n");
+        // expects previous results
+        // we generate new arr each time as it is unsafe to run mutable variable in lambda in concurrent programming
+        Stream.iterate(new int[]{0, 1}, arr -> new int[]{arr[1], arr[0] + arr[1]}).limit(10).forEach(arr -> System.out.println("(" + arr[0] + ","  + arr[1] + ")"));
+    }
+    public static void generateMathRandom(){
+        System.out.println("Random\n");
+        Stream.generate(Math::random).limit(5).forEach(System.out::println);
+    }
+    public static void intStreamsExample(){
+        IntStream.generate(() -> 1).limit(5).forEach(System.out::println);
+        System.out.println("Not safe operation");
+        IntSupplier intSupplier = new IntSupplier() {
+            private int previous = 0;
+            private int next = 1;
+            @Override
+            public int getAsInt() {
+                int previous = this.previous;
+                this.next = this.next + this.previous;
+                this.previous = this.next - this.previous;
+                return previous;
+            }
+        };
+        IntStream.generate(intSupplier).limit(10).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         getPythagoreanTriples();
         streamOfMethod();
         streamFromArrays();
         streamFromFiles();
         streamFromFunctions();
+        generateFibonacci();
+        generateMathRandom();
+        intStreamsExample();
 
     }
 }
