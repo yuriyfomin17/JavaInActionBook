@@ -45,6 +45,8 @@ public class PythagoreanTriple {
         };
 
         Stream.iterate(0, unaryOperator).limit(10).forEach(System.out::println);
+        Stream.iterate(0, x -> x + 2).limit(10).forEach(System.out::println);
+
     }
     public static void main(String[] args) {
         getPythagoreanTriples();
