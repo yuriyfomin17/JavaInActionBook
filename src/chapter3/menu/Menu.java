@@ -3,6 +3,7 @@ package chapter3.menu;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
 
 public class Menu {
 
@@ -81,14 +82,14 @@ public class Menu {
         this.menuList.parallelStream().filter(Dish::isVegetarian).findAny().ifPresent(System.out::println);
     }
     public void getDishMap(){
-        Map<Dish.Type, List<Dish>> map = this.menuList.stream().collect(Collectors.groupingBy(Dish::getType));
+        Map<Dish.Type, List<Dish>> map = this.menuList.stream().collect(groupingBy(Dish::getType));
         for (var entry : map.entrySet()){
             System.out.println("Key:" + entry.getKey());
             entry.getValue().forEach(dish -> System.out.println(dish.getName()));
         }
     }
     public void groupByCalorieLevel(){
-        Map<CALORIC_LEVEL, List<Dish>> map = this.menuList.stream().collect(Collectors.groupingBy(dish -> {
+        Map<CALORIC_LEVEL, List<Dish>> map = this.menuList.stream().collect(groupingBy(dish -> {
             if (dish.getCalories() <= 400){
                 return CALORIC_LEVEL.DIET;
             } else if (dish.getCalories() <= 700) {
@@ -101,7 +102,49 @@ public class Menu {
             entry.getValue().forEach(dish -> System.out.println(dish.getName()));
         }
     }
+    public void performNLevelGrouping(){
+        Map<Dish.Type, Map<CALORIC_LEVEL, List<Dish>>> groupByTypeAndCalorie = this.menuList.stream()
+                .collect(groupingBy(Dish::getType, groupingBy(dish -> {
+                    if (dish.getCalories() <= 400){
+                        return CALORIC_LEVEL.DIET;
+                    } else if (dish.getCalories() <= 700){
+                        return CALORIC_LEVEL.NORMAL;
+                    }
+                    return CALORIC_LEVEL.FAT;
+                })));
+        for (Map.Entry<Dish.Type, Map<CALORIC_LEVEL, List<Dish>>> level1 : groupByTypeAndCalorie.entrySet()){
+            System.out.println("Key:" + level1.getKey());
+            for (Map.Entry<CALORIC_LEVEL, List<Dish>> level2: level1.getValue().entrySet()){
+                System.out.println("Key2:" + level2.getKey());
+                level2.getValue().forEach(dish -> System.out.println(dish.getName()));
+            }
+        }
+    }
 
+    public void countNumberOfDishesForEachType(){
+
+        Map<Dish.Type, Long> groupByTypeAndCount = this.menuList.stream().collect(groupingBy(Dish::getType, Collectors.counting()));
+    }
+    public void calculateTotalCaloriesForEachType(){
+        Map<Dish.Type, Long> groupByTypeAndTotalCalories = this.menuList.stream().collect(groupingBy(Dish::getType, Collectors.summingLong( Dish::getCalories)));
+        groupByTypeAndTotalCalories.forEach((key, value) -> {
+            System.out.println("Key:" + key);
+            System.out.println("Value:" + value);
+        });
+    }
+    public void getMostCaloriesByType(){
+        Map<Dish.Type, Optional<Dish>> getMostCaloriesByType = this.menuList.stream().collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+        getMostCaloriesByType.forEach((key, value) ->{
+            System.out.println("Key:" + key);
+            value.ifPresent(dish -> System.out.println("Value:"+ dish.getName()));
+        });
+        Map<Dish.Type, Dish> getMostCaloriesByType2 = this.menuList.stream().collect(groupingBy(Dish::getType, collectingAndThen(maxBy(Comparator.comparingInt(Dish::getCalories)), Optional::get)));
+        getMostCaloriesByType2.forEach((key, value) ->{
+            System.out.println("Key:" + key);
+            System.out.println("Value:" + value.getName());
+        });
+
+    }
     public int numberOfDishes(){
         return this.menuList.stream().map(dish -> 1).reduce( 0, Integer::sum);
     }
@@ -128,6 +171,9 @@ public class Menu {
         menu.getMenuString();
         menu.getDishMap();
         menu.groupByCalorieLevel();
+        menu.performNLevelGrouping();
+        menu.calculateTotalCaloriesForEachType();
+        menu.getMostCaloriesByType();
 
     }
 }
