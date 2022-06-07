@@ -11,7 +11,7 @@ public class Menu {
     public ArrayList<Dish> getMenuList() {
         return menuList;
     }
-
+    public enum CALORIC_LEVEL{DIET, NORMAL, FAT}
 
     public AddSpecificDishes getMenuAdder(){
         return () ->{
@@ -71,14 +71,37 @@ public class Menu {
         System.out.println("Menu String");
         String menuName = this.menuList.stream().map(Dish::getName).collect(Collectors.joining(","));
         System.out.println("MenuName:" + menuName);
+
+        String menuName1 = this.menuList.stream().map(Dish::getName).reduce("", (s1, s2) -> s1 + s2);
     }
 
     public void findAnyVegetarianDish(){
         Optional<Dish> dish = this.menuList.parallelStream().filter(Dish::isVegetarian).findAny( );
         dish.ifPresent(value -> System.out.println("Vegetarian: " + value));
-
         this.menuList.parallelStream().filter(Dish::isVegetarian).findAny().ifPresent(System.out::println);
     }
+    public void getDishMap(){
+        Map<Dish.Type, List<Dish>> map = this.menuList.stream().collect(Collectors.groupingBy(Dish::getType));
+        for (var entry : map.entrySet()){
+            System.out.println("Key:" + entry.getKey());
+            entry.getValue().forEach(dish -> System.out.println(dish.getName()));
+        }
+    }
+    public void groupByCalorieLevel(){
+        Map<CALORIC_LEVEL, List<Dish>> map = this.menuList.stream().collect(Collectors.groupingBy(dish -> {
+            if (dish.getCalories() <= 400){
+                return CALORIC_LEVEL.DIET;
+            } else if (dish.getCalories() <= 700) {
+                return CALORIC_LEVEL.NORMAL;
+            }
+            return CALORIC_LEVEL.FAT;
+        }));
+        for (var entry: map.entrySet()){
+            System.out.println("Key:" + entry.getKey());
+            entry.getValue().forEach(dish -> System.out.println(dish.getName()));
+        }
+    }
+
     public int numberOfDishes(){
         return this.menuList.stream().map(dish -> 1).reduce( 0, Integer::sum);
     }
@@ -103,5 +126,8 @@ public class Menu {
         menu.getAverageCalories();
         menu.getMenuStatistics();
         menu.getMenuString();
+        menu.getDishMap();
+        menu.groupByCalorieLevel();
+
     }
 }
