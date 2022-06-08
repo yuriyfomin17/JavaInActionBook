@@ -2,6 +2,7 @@ package chapter3.menu;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
 
@@ -122,7 +123,6 @@ public class Menu {
     }
 
     public void countNumberOfDishesForEachType(){
-
         Map<Dish.Type, Long> groupByTypeAndCount = this.menuList.stream().collect(groupingBy(Dish::getType, Collectors.counting()));
     }
     public void calculateTotalCaloriesForEachType(){
@@ -145,13 +145,60 @@ public class Menu {
         });
 
     }
+    public void getTypeAndCalorieLevel(){
+        System.out.println("getTypeAndCalorieLevel");
+        Map<Dish.Type, Set<CALORIC_LEVEL>> typeAndCalorieLevel = this.menuList.stream().collect(groupingBy(Dish::getType, mapping(dish ->{
+            if (dish.getCalories() <= 400){
+                return CALORIC_LEVEL.DIET;
+            } else if (dish.getCalories() <= 700){
+                return CALORIC_LEVEL.NORMAL;
+            }
+            return CALORIC_LEVEL.FAT;
+
+        }, toSet())));
+        typeAndCalorieLevel.forEach((key, setValue)->{
+            System.out.println("Key:" + key);
+            setValue.forEach(System.out::println);
+        } );
+    }
+    public void partitionMenu(){
+        Map<Boolean, List<Dish>> mapDish = this.menuList.stream().collect(partitioningBy(Dish::isVegetarian));
+        List<Dish> vegetarianList = mapDish.get(true);
+        vegetarianList.forEach(dish -> System.out.println("Vegetarian:" + dish.isVegetarian() + ", Dish Name:" + dish.getName()));
+    }
+    public void partitionMenuByType(){
+        Map<Boolean, Map<Dish.Type,List<Dish>>> mapDish = this.menuList.stream().collect(partitioningBy(Dish::isVegetarian, groupingBy(Dish::getType)));
+        Map<Dish.Type,List<Dish>> vegetarianMenu = mapDish.get(true);
+        vegetarianMenu.forEach((key, value) ->{
+            System.out.println("Key:" + key);
+            value.forEach( dish -> System.out.println("Name:" + dish.getName()));
+        });
+    }
+    public void mostCaloricPartitionedByVegetarian(){
+        Map<Boolean, Dish> mostCaloricPartitionedByVegetarian = this.menuList.stream().collect(
+                partitioningBy(Dish::isVegetarian,
+                collectingAndThen(maxBy(Comparator.comparingInt(Dish::getCalories)), Optional::get)));
+        System.out.println("VegetarianHighestCalories:" + mostCaloricPartitionedByVegetarian.get(true) );
+        System.out.println("NonVegetarianHighestCalories:" + mostCaloricPartitionedByVegetarian.get(false));
+    }
     public int numberOfDishes(){
         return this.menuList.stream().map(dish -> 1).reduce( 0, Integer::sum);
+    }
+    public static boolean isPrime(int n){
+        int rootN = (int) Math.sqrt( n);
+        return IntStream.rangeClosed(2, rootN).boxed().noneMatch(x -> n % x == 0);
+    }
+    public static void partitionPrimes(int endRange){
+        Map<Boolean, List<Integer>> list = IntStream.rangeClosed(2, endRange).boxed().collect(partitioningBy(Menu::isPrime));
+        list.forEach((key, value) ->{
+            System.out.println("Prime Numbers:" + key);
+            value.forEach(System.out::println);
+        });
     }
 
 
     public static void main(String[] args) {
-
+        partitionPrimes(9);
         Menu menu = new Menu();
         AddSpecificDishes addSpecificDishes = menu.getMenuAdder();
         addSpecificDishes.addTenRandomDishes();
@@ -164,6 +211,7 @@ public class Menu {
         dishesNameLengths.forEach(System.out::println);
         menu.findAnyVegetarianDish();
         System.out.println("sum of all calories:" + menu.numberOfDishes());
+
         menu.getMostCalorieDish();
         menu.getTotalCalories();
         menu.getAverageCalories();
@@ -174,6 +222,10 @@ public class Menu {
         menu.performNLevelGrouping();
         menu.calculateTotalCaloriesForEachType();
         menu.getMostCaloriesByType();
+        menu.getTypeAndCalorieLevel();
+        menu.partitionMenu();
+        menu.partitionMenuByType();
+        menu.mostCaloricPartitionedByVegetarian();
 
     }
 }
