@@ -1,11 +1,9 @@
-package chapt2;
+package chapter2;
 
-import chapt2.util.*;
+import chapter2.util.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Apple implements ApplePredicate {
     private int weight = 0;
@@ -29,8 +27,10 @@ public class Apple implements ApplePredicate {
 
     @Override
     public String toString() {
+        String charateristic = this.getWeight() > 150 ? "heavy": "light";
         return "Apple{" +
-                "weight=" + weight +
+                charateristic +
+                ", weight=" + weight +
                 ", color=" + color +
                 '}';
     }

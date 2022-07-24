@@ -1,8 +1,7 @@
-package chapt2.util;
+package chapter2.util;
 
-import chapt2.Apple;
+import chapter2.Apple;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;

@@ -1,6 +1,4 @@
-package chapt2;
-
-import java.util.function.Predicate;
+package chapter2;
 
 public interface ApplePredicate {
 

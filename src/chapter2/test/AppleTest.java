@@ -1,6 +1,6 @@
-package chapt2.test;
-import chapt2.Apple;
-import chapt2.util.AppleDataGenerator;
+package chapter2.test;
+import chapter2.Apple;
+import chapter2.util.AppleDataGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

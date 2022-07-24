@@ -1,4 +1,4 @@
-package chapt2.util;
+package chapter2.util;
 
 
 import java.util.List;
