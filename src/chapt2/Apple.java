@@ -2,8 +2,10 @@ package chapt2;
 
 import chapt2.util.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Apple implements ApplePredicate {
     private int weight = 0;
@@ -34,7 +36,26 @@ public class Apple implements ApplePredicate {
     }
 
     @Override
-    public boolean appleHeavyPredicate(Apple apple, Predicate<Apple> applePredicate) {
-        return applePredicate.test(apple);
+    public boolean isAppleHeavy() {
+        return this.getWeight() > 150;
+    }
+
+    @Override
+    public boolean isAppleGreen() {
+        return this.getColor().equals(Color.GREEN);
+    }
+
+    @Override
+    public boolean isAppleRed() {
+        return this.getColor().equals(Color.RED);
+    }
+
+    @Override
+    public boolean isAppleRedAndHeavy() {
+        return isAppleRed() && isAppleHeavy();
+    }
+
+    public static List<Apple> filterApples(List<Apple> appleList, Predicate<Apple> applePredicate){
+        return appleList.stream().filter(applePredicate).toList();
     }
 }

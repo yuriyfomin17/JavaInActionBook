@@ -5,9 +5,24 @@ import java.util.function.Predicate;
 public interface ApplePredicate {
 
     /**
-     * <h3>appleHeavyPredicate</h3> receives {@link Apple} and {@link Predicate}
-     * <br/>and determines whether it is heavy or not
+     * <h3>isAppleHeavy</h3> determines whether apple is heavy
      */
 
-    boolean appleHeavyPredicate(Apple apple, Predicate<Apple> applePredicate);
+    boolean isAppleHeavy();
+
+    /**
+     * <h3>appleGreenPredicate</h3>  whether apple is green or not
+     */
+    boolean isAppleGreen();
+
+    /**
+     * <h3>appleRedPredicate</h3>  whether apple is red or not
+     */
+    boolean isAppleRed();
+
+    /**
+     * <h3>isAppleRedAndHeavy</h3>
+     * determines whether it is heavy and red
+     */
+    boolean isAppleRedAndHeavy();
 }
