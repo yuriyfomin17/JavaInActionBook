@@ -3,8 +3,9 @@ package chapt2;
 import chapt2.util.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 
-public class Apple {
+public class Apple implements ApplePredicate {
     private int weight = 0;
     private Color color = Color.getRandomColor();
 
@@ -32,8 +33,8 @@ public class Apple {
                 '}';
     }
 
-    public static void main(String[] args) {
-        List<Apple> appleArrayList = AppleDataGenerator.getListOfRandomApples(20);
-        appleArrayList.forEach(System.out::println);
+    @Override
+    public boolean appleHeavyPredicate(Apple apple, Predicate<Apple> applePredicate) {
+        return applePredicate.test(apple);
     }
 }
