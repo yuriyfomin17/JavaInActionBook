@@ -197,35 +197,38 @@ public class Menu {
     }
 
 
-    public static void main(String[] args) {
-        partitionPrimes(9);
-        Menu menu = new Menu();
-        AddSpecificDishes addSpecificDishes = menu.getMenuAdder();
-        addSpecificDishes.addTenRandomDishes();
-        System.out.println(menu);
-        System.out.println(menu.getLowCaloriesSortedDishes());
-
-        List<Dish> dishes = menu.getFirstTwoMeatDishes();
-        dishes.forEach(System.out::println);
-        List<Integer> dishesNameLengths = menu.getDishNameLengths();
-        dishesNameLengths.forEach(System.out::println);
-        menu.findAnyVegetarianDish();
-        System.out.println("sum of all calories:" + menu.numberOfDishes());
-
-        menu.getMostCalorieDish();
-        menu.getTotalCalories();
-        menu.getAverageCalories();
-        menu.getMenuStatistics();
-        menu.getMenuString();
-        menu.getDishMap();
-        menu.groupByCalorieLevel();
-        menu.performNLevelGrouping();
-        menu.calculateTotalCaloriesForEachType();
-        menu.getMostCaloriesByType();
-        menu.getTypeAndCalorieLevel();
-        menu.partitionMenu();
-        menu.partitionMenuByType();
-        menu.mostCaloricPartitionedByVegetarian();
-
-    }
+//    public static void main(String[] args) {
+//        partitionPrimes(9);
+//        Menu menu = new Menu();
+//        AddSpecificDishes addSpecificDishes = menu.getMenuAdder();
+//        addSpecificDishes.addTenRandomDishes();
+//        System.out.println(menu);
+//        System.out.println(menu.getLowCaloriesSortedDishes());
+//
+//        List<Dish> dishes = menu.getFirstTwoMeatDishes();
+//        dishes.forEach(System.out::println);
+//        List<Integer> dishesNameLengths = menu.getDishNameLengths();
+//        dishesNameLengths.forEach(System.out::println);
+//        menu.findAnyVegetarianDish();
+//        System.out.println("sum of all calories:" + menu.numberOfDishes());
+//
+//        menu.getMostCalorieDish();
+//        menu.getTotalCalories();
+//        menu.getAverageCalories();
+//        menu.getMenuStatistics();
+//        menu.getMenuString();
+//        menu.getDishMap();
+//        menu.groupByCalorieLevel();
+//        menu.performNLevelGrouping();
+//        menu.calculateTotalCaloriesForEachType();
+//        menu.getMostCaloriesByType();
+//        menu.getTypeAndCalorieLevel();
+//        menu.partitionMenu();
+//        menu.partitionMenuByType();
+//        menu.mostCaloricPartitionedByVegetarian();
+//
+//    }
+public static void main(String[] args) {
+        
+}
 }
