@@ -10,9 +10,12 @@ import java.util.stream.Stream;
 
 public class DishDataGenerator {
     private static final Random RANDOM = new Random();
+    public static final int LOW_CALORIES = 300;
+    public static final int MEDIUM_CALORIES = 500;
+    public static final int HIGH_CALORIES = 1000;
 
     public static Dish createRandomDish(){
-        return new Dish(RandomStringUtils.randomAlphabetic(5), RANDOM.nextInt(1000), Type.getRandomType() );
+        return new Dish(RandomStringUtils.randomAlphabetic(5), RANDOM.nextInt(LOW_CALORIES), Type.getRandomType() );
     }
 
     public static List<Dish> getDishList(int size){

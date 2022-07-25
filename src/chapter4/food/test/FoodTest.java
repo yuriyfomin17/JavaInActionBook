@@ -20,4 +20,17 @@ public class FoodTest {
         menu.getThreeHighCaloriesDishNames().forEach(System.out::println);
 
     }
+
+    @Test
+    public void testMenuIsHealthy(){
+        Menu menu = new Menu(dishList);
+        String isHealthy =  menu.isMenuHealthy() ? "healthy" : "not healthy";
+        System.out.println("Menu is " + isHealthy);
+    }
+
+    @Test
+    public void findAnyVegeterianDish(){
+        Menu menu = new Menu(dishList);
+        menu.findAnyVegeterianDish().ifPresent(System.out::println);
+    }
 }
