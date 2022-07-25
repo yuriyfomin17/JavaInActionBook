@@ -1,4 +1,4 @@
-package chapter3;
+package chapter3.mutableVariable;
 
 import java.util.function.IntSupplier;
 

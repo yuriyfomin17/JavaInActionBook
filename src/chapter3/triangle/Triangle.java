@@ -1,4 +1,4 @@
-package chapt3.triangle;
+package chapter3.triangle;
 
 import java.util.function.DoubleFunction;
 

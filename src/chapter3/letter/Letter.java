@@ -1,4 +1,4 @@
-package chapt3.letter;
+package chapter3.letter;
 
 import java.util.function.Function;
 
