@@ -1,7 +1,7 @@
-package chapt5.utilityClass.testUtilityClass;
+package chapter5.utilityClass.testUtilityClass;
 
-import chapt5.utilityClass.DataGenerator;
-import chapt5.utilityClass.UtilityClass;
+import chapter5.utilityClass.DataGenerator;
+import chapter5.utilityClass.UtilityClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +52,21 @@ public class UtilityClassTest {
     @Test
     public void testGetPythagoreanTriple(){
         List<List<Integer>> list = UtilityClass.getPythagoreanTriples();
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testCountUniqueWords(){
+        System.out.println("Unique words:" + UtilityClass.countNumberOfUniqueWords("src/chapt5/utilityClass/assets/data.txt"));
+    }
+
+    @Test
+    public void getUniqueWords(){
+        System.out.println(UtilityClass.listUniqueNumberOfWords("src/chapt5/utilityClass/assets/data.txt"));
+    }
+    @Test
+    public void testGetFibonacciSequence(){
+        List<Integer> list = UtilityClass.getFibonacciSequence(5);
         list.forEach(System.out::println);
     }
 }

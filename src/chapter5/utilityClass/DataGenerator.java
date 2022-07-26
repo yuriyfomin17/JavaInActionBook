@@ -1,4 +1,4 @@
-package chapt5.utilityClass;
+package chapter5.utilityClass;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

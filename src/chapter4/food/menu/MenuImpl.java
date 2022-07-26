@@ -22,5 +22,16 @@ public interface MenuImpl {
      */
     Optional<Dish> findAnyVegeterianDish();
 
+    /**
+     * <h3>getAverageMenuCalories</h3> get average calories for menu
+     */
+    double getAverageMenuCalories();
+
+
+    /**
+     * <h3>getTotalMenuCalories</h3> get total calories for menu
+     */
+    int getTotalMenuCalories();
+
 
 }

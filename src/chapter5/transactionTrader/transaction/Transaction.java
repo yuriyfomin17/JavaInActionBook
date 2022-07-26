@@ -1,7 +1,7 @@
-package chapt5.transactionTrader.transaction;
+package chapter5.transactionTrader.transaction;
 
-import chapt5.transactionTrader.trader.Trader;
-import chapt5.transactionTrader.util.City;
+import chapter5.transactionTrader.trader.Trader;
+import chapter5.transactionTrader.util.City;
 
 public record Transaction(Trader trader, int year, int value) {
 

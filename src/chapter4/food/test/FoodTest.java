@@ -7,30 +7,36 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class FoodTest {
-    static List<Dish> dishList = DishDataGenerator.getDishList(20);
+    private static final List<Dish> DISHLIST = DishDataGenerator.getDishList(20);
 
     @Test
     public void generateRandomsDishes(){
-        dishList.forEach(System.out::println);
+        DISHLIST.forEach(System.out::println);
     }
 
     @Test
     public void getThreeHighCaloriesDishes(){
-        Menu menu = new Menu(dishList);
+        Menu menu = new Menu(DISHLIST);
         menu.getThreeHighCaloriesDishNames().forEach(System.out::println);
 
     }
 
     @Test
     public void testMenuIsHealthy(){
-        Menu menu = new Menu(dishList);
+        Menu menu = new Menu(DISHLIST);
         String isHealthy =  menu.isMenuHealthy() ? "healthy" : "not healthy";
         System.out.println("Menu is " + isHealthy);
     }
 
     @Test
     public void findAnyVegeterianDish(){
-        Menu menu = new Menu(dishList);
+        Menu menu = new Menu(DISHLIST);
         menu.findAnyVegeterianDish().ifPresent(System.out::println);
+    }
+
+    @Test
+    public void testGetAverageMenuCalories(){
+        Menu menu = new Menu(DISHLIST);
+        System.out.println("Average calories:" + menu.getAverageMenuCalories());
     }
 }

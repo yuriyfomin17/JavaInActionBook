@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.averagingInt;
+import static java.util.stream.Collectors.summingInt;
+
 public class Menu implements MenuImpl {
     private final List<Dish> menuList;
     public Menu(List<Dish> dishList){
@@ -33,5 +36,16 @@ public class Menu implements MenuImpl {
     @Override
     public Optional<Dish> findAnyVegeterianDish() {
         return this.menuList.stream().filter(Dish::isVegeterian).findAny();
+    }
+
+    @Override
+    public double getAverageMenuCalories() {
+        return this.menuList.stream().collect(averagingInt(Dish::getCalories));
+    }
+
+    @Override
+    public int getTotalMenuCalories() {
+//        return this.menuList.stream().map(Dish::getCalories).reduce(0, Integer::sum);
+        return this.menuList.stream().mapToInt(Dish::getCalories).sum();
     }
 }

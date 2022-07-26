@@ -1,8 +1,8 @@
-package chapt5.transactionTrader.transactionFilter;
+package chapter5.transactionTrader.transactionFilter;
 
-import chapt5.transactionTrader.trader.Trader;
-import chapt5.transactionTrader.transaction.Transaction;
-import chapt5.transactionTrader.util.City;
+import chapter5.transactionTrader.trader.Trader;
+import chapter5.transactionTrader.transaction.Transaction;
+import chapter5.transactionTrader.util.City;
 
 import java.util.Comparator;
 import java.util.List;
