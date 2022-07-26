@@ -42,4 +42,10 @@ public class UtilityClassTest {
         List<List<Integer>> result = UtilityClass.getAllPairsDivisibleByThree(list1, list2);
         result.forEach(System.out::println);
     }
+
+    @Test
+    public void testGetSum(){
+        List<Integer> list1 = DataGenerator.generateNumbersList(3);
+        System.out.println("Sum:" + UtilityClass.getSum(list1));
+    }
 }

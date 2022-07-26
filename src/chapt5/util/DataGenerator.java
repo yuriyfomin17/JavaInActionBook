@@ -22,4 +22,5 @@ public class DataGenerator {
         for (int i = 1; i <= size; i++) list.add(i);
         return list;
     }
+
 }

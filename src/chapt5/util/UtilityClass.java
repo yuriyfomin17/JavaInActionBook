@@ -25,4 +25,8 @@ public class UtilityClass {
                 .filter(el -> (el.get(0) + el.get(1)) % 3 == 0)
                 .collect(Collectors.toList());
     }
+
+    public static Integer getSum(List<Integer> list){
+        return list.stream().reduce(0, Integer::sum);
+    }
 }
