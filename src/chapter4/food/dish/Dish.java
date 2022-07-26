@@ -1,5 +1,6 @@
 package chapter4.food.dish;
 
+import chapter4.food.util.CaloricLevel;
 import chapter4.food.util.Type;
 
 public class Dish implements DishPredicate {
@@ -31,6 +32,12 @@ public class Dish implements DishPredicate {
 
     public Type getType() {
         return type;
+    }
+
+    public CaloricLevel getCaloricLevel (){
+        if (this.getCalories() <= 400) return CaloricLevel.DIET;
+        else if (this.getCalories() <= 700) return CaloricLevel.NORMAL;
+        else return CaloricLevel.FAT;
     }
 
     @Override

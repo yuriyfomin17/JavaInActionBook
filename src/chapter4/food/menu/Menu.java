@@ -1,13 +1,16 @@
 package chapter4.food.menu;
 
 import chapter4.food.dish.Dish;
+import chapter4.food.util.CaloricLevel;
+import chapter4.food.util.Type;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.averagingInt;
-import static java.util.stream.Collectors.summingInt;
+import static java.util.stream.Collectors.*;
 
 public class Menu implements MenuImpl {
     private final List<Dish> menuList;
@@ -47,5 +50,35 @@ public class Menu implements MenuImpl {
     public int getTotalMenuCalories() {
 //        return this.menuList.stream().map(Dish::getCalories).reduce(0, Integer::sum);
         return this.menuList.stream().mapToInt(Dish::getCalories).sum();
+    }
+
+    @Override
+    public String getNamesOfAllDishes() {
+        return this.menuList.stream().map(Dish::getName).collect(Collectors.joining(","));
+    }
+
+    @Override
+    public Map<Type, List<Dish>> groupDishesByType() {
+        return this.menuList.stream().collect(groupingBy(Dish::getType));
+    }
+
+    @Override
+    public Map<CaloricLevel, List<Dish>> gorupDishesByCaloicLevel() {
+        return this.menuList.stream().collect(groupingBy(Dish::getCaloricLevel));
+    }
+
+    @Override
+    public Map<Type, Map<CaloricLevel, List<Dish>>> groupByTypeAndCaloricLevel() {
+        return this.menuList.stream().collect(groupingBy(Dish::getType, groupingBy(Dish::getCaloricLevel)));
+    }
+
+    @Override
+    public Map<Type, Long> getCountByType() {
+        return this.menuList.stream().collect(groupingBy(Dish::getType, counting()));
+    }
+
+    @Override
+    public Map<Type, Optional<Dish>> getByTypeMostCaloric() {
+        return this.menuList.stream().collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
     }
 }

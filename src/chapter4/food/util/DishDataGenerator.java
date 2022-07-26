@@ -15,7 +15,7 @@ public class DishDataGenerator {
     public static final int HIGH_CALORIES = 1000;
 
     public static Dish createRandomDish(){
-        return new Dish(RandomStringUtils.randomAlphabetic(5), RANDOM.nextInt(LOW_CALORIES), Type.getRandomType() );
+        return new Dish(RandomStringUtils.randomAlphabetic(5), RANDOM.nextInt(HIGH_CALORIES), Type.getRandomType() );
     }
 
     public static List<Dish> getDishList(int size){
