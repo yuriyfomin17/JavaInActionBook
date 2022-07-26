@@ -1,6 +1,6 @@
-package chapt5.traders.trader;
+package chapt5.transactionTrader.trader;
 
-import chapt5.traders.util.City;
+import chapt5.transactionTrader.util.City;
 
 public class Trader {
     private final String name;

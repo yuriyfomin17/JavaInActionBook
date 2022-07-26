@@ -1,7 +1,7 @@
-package chapt5.traders.util;
+package chapt5.transactionTrader.util;
 
-import chapt5.traders.trader.Trader;
-import chapt5.traders.transaction.Transaction;
+import chapt5.transactionTrader.trader.Trader;
+import chapt5.transactionTrader.transaction.Transaction;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package chapt5.traders.util;
+package chapt5.transactionTrader.util;
 
 import java.util.List;
 import java.util.Random;

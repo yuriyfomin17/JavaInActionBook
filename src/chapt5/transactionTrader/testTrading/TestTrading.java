@@ -1,9 +1,9 @@
-package chapt5.traders.testTrading;
-import chapt5.traders.trader.Trader;
-import chapt5.traders.transaction.Transaction;
-import chapt5.traders.transactionFilter.TransactionTraderFilter;
-import chapt5.traders.util.City;
-import chapt5.traders.util.DataGenerator;
+package chapt5.transactionTrader.testTrading;
+import chapt5.transactionTrader.trader.Trader;
+import chapt5.transactionTrader.transaction.Transaction;
+import chapt5.transactionTrader.transactionFilter.TransactionTraderFilter;
+import chapt5.transactionTrader.util.City;
+import chapt5.transactionTrader.util.DataGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

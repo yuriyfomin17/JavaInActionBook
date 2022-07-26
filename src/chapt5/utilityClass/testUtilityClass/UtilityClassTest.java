@@ -1,7 +1,7 @@
-package chapt5.testUtil;
+package chapt5.utilityClass.testUtilityClass;
 
-import chapt5.util.DataGenerator;
-import chapt5.util.UtilityClass;
+import chapt5.utilityClass.DataGenerator;
+import chapt5.utilityClass.UtilityClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,5 +47,11 @@ public class UtilityClassTest {
     public void testGetSum(){
         List<Integer> list1 = DataGenerator.generateNumbersList(3);
         System.out.println("Sum:" + UtilityClass.getSum(list1));
+    }
+
+    @Test
+    public void testGetPythagoreanTriple(){
+        List<List<Integer>> list = UtilityClass.getPythagoreanTriples();
+        list.forEach(System.out::println);
     }
 }

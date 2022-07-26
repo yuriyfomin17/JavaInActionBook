@@ -1,13 +1,7 @@
-package chapt5.traders.transaction;
+package chapt5.transactionTrader.transaction;
 
-import chapt5.traders.trader.Trader;
-import chapt5.traders.util.City;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.BinaryOperator;
-import java.util.stream.Collectors;
+import chapt5.transactionTrader.trader.Trader;
+import chapt5.transactionTrader.util.City;
 
 public record Transaction(Trader trader, int year, int value) {
 

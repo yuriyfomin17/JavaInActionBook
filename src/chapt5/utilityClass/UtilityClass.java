@@ -1,9 +1,9 @@
-package chapt5.util;
+package chapt5.utilityClass;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class UtilityClass {
     public static List<String> getUniqueCharactersFromStringList(List<String> stringList){
@@ -28,5 +28,10 @@ public class UtilityClass {
 
     public static Integer getSum(List<Integer> list){
         return list.stream().reduce(0, Integer::sum);
+    }
+
+    public static List<List<Integer>> getPythagoreanTriples(){
+        return IntStream.rangeClosed(1, 100).boxed().flatMap(a -> IntStream.rangeClosed(a, 100).boxed().filter(b-> Math.sqrt(a * a + b * b) % 1 == 0)
+                .map(b -> List.of(a, b , (int) Math.sqrt(a * a + b * b)))).collect(Collectors.toList());
     }
 }

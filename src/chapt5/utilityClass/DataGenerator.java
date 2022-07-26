@@ -1,4 +1,4 @@
-package chapt5.util;
+package chapt5.utilityClass;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
