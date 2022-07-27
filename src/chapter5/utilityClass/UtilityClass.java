@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -101,6 +99,18 @@ public class UtilityClass {
 
     public static Map<Boolean, List<Integer>> getPrimeNumbersListWithCustomCollector(int limit) {
         return IntStream.rangeClosed(2, limit).boxed().collect(new PrimeNumbersCollector());
+    }
+    public static Map<Boolean, List<Integer>> getPrimeNumbersWithoutStream(int limit){
+        Map<Boolean, List<Integer>> result = new HashMap<>();
+        result.put(true, new ArrayList<>());
+        result.put(false, new ArrayList<>());
+        for (int i = 2; i <= limit ; i++) {
+            boolean isPrime = UtilityClass.isNumberPrimeFromCurrentCandidates(result.get(true), i);
+            List<Integer> list = result.get(isPrime);
+            list.add(i);
+            result.put(isPrime, list);
+        }
+        return result;
     }
 
     public static void testPerfomanceofWithAndWithoutCusomtCollector(Function<Integer, Map<Boolean, List<Integer>>> function, String description) {

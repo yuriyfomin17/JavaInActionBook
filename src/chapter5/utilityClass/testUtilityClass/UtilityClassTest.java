@@ -90,6 +90,15 @@ public class UtilityClassTest {
         } );
     }
 
+    @Test
+    public void testPartitionPrimeNonPrimeNumbersWithoutStream(){
+        Map<Boolean, List<Integer>> primeNonPrimeList = UtilityClass.getPrimeNumbersWithoutStream(100);
+        primeNonPrimeList.forEach((isPrime, list) -> {
+            System.out.println(isPrime ? "Prime" : "Non prime");
+            System.out.println(list);
+        });
+    }
+
     /**
      * <h3>testPerfomanceOfPrimeNumberFinders</h3>
      * tests perfomance of prime number finders with and without {@link PrimeNumbersCollector}
@@ -99,5 +108,6 @@ public class UtilityClassTest {
     public void testPerfomanceOfPrimeNumberFinders(){
         UtilityClass.testPerfomanceofWithAndWithoutCusomtCollector(UtilityClass::getPrimeNumbersList, "getPrimeNumbersList");
         UtilityClass.testPerfomanceofWithAndWithoutCusomtCollector(UtilityClass::getPrimeNumbersListWithCustomCollector,"getPrimeNumbersListWithCustomCollector");
+        UtilityClass.testPerfomanceofWithAndWithoutCusomtCollector(UtilityClass::getPrimeNumbersWithoutStream, "getPrimeNumbersWithoutStream");
     }
 }
