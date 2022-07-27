@@ -7,6 +7,7 @@ import chapter4.food.util.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public interface MenuImpl {
 
@@ -74,4 +75,42 @@ public interface MenuImpl {
      * get by type most caloric dish
      */
     Map<Type, Optional<Dish>> getByTypeMostCaloric();
+
+
+    /**
+     * <h3>getByTypeMostCaloricWithoutOptional</h3>
+     * get dish by type and most caloric but this time without optional
+     */
+    Map<Type, Dish> getByTypeMostCaloricWithoutOptional();
+
+    /**
+     * <h3>getByTypeToSet</h3>
+     * get caloric levels for each type
+     */
+    Map<Type, Set<CaloricLevel>> getByTypeToSet();
+
+    /**
+     * <h3>partitionByVegeterianDish<h3/>
+     * partitions dishes by vegeterian type
+     */
+    Map<Boolean, List<Dish>> partitionByVegeterianDish();
+
+
+    /**
+     * <h3>partitionByVegeterianGroupByType<h3/>
+     * partitions dishes by vegeterian and gets them by type
+     */
+    Map<Boolean, Map<Type, List<Dish>>> partitioanByVegeterianGroupByType();
+
+    /**
+     * <h3>partitionByVegeterianPartitionByCaloricLevel<h3/>
+     * partitions menu by vegeterian and by caloric level
+     */
+    Map<Boolean, Map<Boolean, List<Dish>>> partitionByVegeterianPartitionByCaloricLevel();
+
+    /**
+     * <h3>partitionaByVegeterianGetTotalCount<h3/>
+     * partitions by vegeterian and gets total count
+     */
+    Map<Boolean, Long> partitionaByVegeterianGetTotalCount();
 }

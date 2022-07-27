@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public class FoodTest {
     private static final List<Dish> DISHLIST = DishDataGenerator.getDishList(20);
@@ -97,5 +98,82 @@ public class FoodTest {
         }));
     }
 
+    @Test
+    public void TestGetByTypeMostCaloricWithoutOptional(){
+        Menu menu = new Menu(DISHLIST);
+        Map<Type, Dish> dishByTypeMostcaloricWithoutOptional = menu.getByTypeMostCaloricWithoutOptional();
+
+        dishByTypeMostcaloricWithoutOptional.forEach((type, dish) -> {
+            System.out.println(type);
+            System.out.println(dish);
+        });
+    }
+
+    @Test
+    public void TestGetByTypeToSet(){
+        Menu menu = new Menu(DISHLIST);
+        Map<Type, Set<CaloricLevel>> typeCaloricLevelSet = menu.getByTypeToSet();
+        typeCaloricLevelSet.forEach((type, caloricLevels) -> {
+            System.out.println(type);
+            caloricLevels.forEach(System.out::println);
+            System.out.println();
+        });
+    }
+
+    @Test
+    public void TestParitionByVegeterian(){
+        Menu menu = new Menu(DISHLIST);
+        Map<Boolean, List<Dish>> vegeterianNonVegeterianDishes = menu.partitionByVegeterianDish();
+
+        List<Dish> vegeterian = vegeterianNonVegeterianDishes.get(true);
+        List<Dish> nonVegeterian = vegeterianNonVegeterianDishes.get(false);
+
+        System.out.println("VEGETERIAN DISHES");
+        vegeterian.forEach(System.out::println);
+
+        System.out.println("NON VEGETERIAN DISHES");
+        nonVegeterian.forEach(System.out::println);
+    }
+
+    @Test
+    public void TestPartitionByVegeterianGroupByType(){
+        Menu menu = new Menu(DISHLIST);
+
+        Map<Boolean, Map<Type, List<Dish>>> veganNonVeganGroupedByType = menu.partitioanByVegeterianGroupByType();
+
+        veganNonVeganGroupedByType.forEach((isVegan, typeListMap) -> {
+            System.out.println(isVegan ? "VEGAN DISHES" : "NON VEGAN DISHES");
+            typeListMap.forEach((type, dishList) -> {
+                System.out.println(type);
+                System.out.println(dishList);
+            });
+        });
+    }
+
+    @Test
+    public void TestPartitionByVegeterianPartitionByCaloricLevel(){
+        Menu menu = new Menu(DISHLIST);
+
+        Map<Boolean, Map<Boolean, List<Dish>>> veganNonVeganLowCaloriesNonLowCalories = menu.partitionByVegeterianPartitionByCaloricLevel();
+
+        veganNonVeganLowCaloriesNonLowCalories.forEach((isVegan, caloricListMap) ->{
+            System.out.println(isVegan ? "VEGAN" : "NON VEGAN");
+            caloricListMap.forEach((isLowCalories, dishList) -> {
+                System.out.println(isLowCalories ? "LOW CALORIES" : "MEDIUM OR HIGH CLAORIES");
+                dishList.forEach(System.out::println);
+            });
+        } );
+    }
+
+    @Test
+    public void TestPartitionsByVegeterianAndGetsTotalCount(){
+        Menu menu = new Menu(DISHLIST);
+        Map<Boolean, Long> veganNonVeganTotalCount = menu.partitionaByVegeterianGetTotalCount();
+
+        veganNonVeganTotalCount.forEach((isVegan, totalCount) -> {
+            System.out.println(isVegan ? "VEGAN" : "NON VEGAN");
+            System.out.println(totalCount);
+        });
+    }
 
 }

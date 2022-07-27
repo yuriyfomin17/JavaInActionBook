@@ -4,10 +4,7 @@ import chapter4.food.dish.Dish;
 import chapter4.food.util.CaloricLevel;
 import chapter4.food.util.Type;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
@@ -81,4 +78,35 @@ public class Menu implements MenuImpl {
     public Map<Type, Optional<Dish>> getByTypeMostCaloric() {
         return this.menuList.stream().collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
     }
+
+    @Override
+    public Map<Type, Dish> getByTypeMostCaloricWithoutOptional() {
+        return this.menuList.stream().collect(groupingBy(Dish::getType, collectingAndThen(maxBy(Comparator.comparingInt(Dish::getCalories)), Optional::get)));
+    }
+
+    @Override
+    public Map<Type, Set<CaloricLevel>> getByTypeToSet() {
+        return this.menuList.stream().collect(groupingBy(Dish::getType, mapping(Dish::getCaloricLevel, toSet())));
+    }
+
+    @Override
+    public Map<Boolean, List<Dish>> partitionByVegeterianDish() {
+        return this.menuList.stream().collect(partitioningBy(Dish::isVegeterian));
+    }
+
+    @Override
+    public Map<Boolean, Map<Type, List<Dish>>> partitioanByVegeterianGroupByType() {
+        return this.menuList.stream().collect(partitioningBy(Dish::isVegeterian, groupingBy(Dish::getType)));
+    }
+
+    @Override
+    public Map<Boolean, Map<Boolean, List<Dish>>> partitionByVegeterianPartitionByCaloricLevel() {
+        return this.menuList.stream().collect(partitioningBy(Dish::isVegeterian,  partitioningBy(Dish::isLowCalories)));
+    }
+
+    @Override
+    public Map<Boolean, Long> partitionaByVegeterianGetTotalCount() {
+        return this.menuList.stream().collect(partitioningBy(Dish::isVegeterian, counting()));
+    }
 }
+
