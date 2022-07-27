@@ -1,10 +1,12 @@
 package chapter5.utilityClass.testUtilityClass;
+import chapter5.utilityClass.primeNumberCustomCollector.PrimeNumbersCollector;
 
 import chapter5.utilityClass.DataGenerator;
 import chapter5.utilityClass.UtilityClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public class UtilityClassTest {
 
@@ -68,5 +70,34 @@ public class UtilityClassTest {
     public void testGetFibonacciSequence(){
         List<Integer> list = UtilityClass.getFibonacciSequence(5);
         list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testPartitioningByPrimeNonPrime(){
+        Map<Boolean, List<Integer>> primeNonPrimeList = UtilityClass.getPrimeNumbersList(100);
+        primeNonPrimeList.forEach((isPrime, list) -> {
+            System.out.println(isPrime ? "Prime" : "Non prime");
+            System.out.println(list);
+        } );
+    }
+
+    @Test
+    public void testPartitioningByPrimeNonPrimeCustomCollector(){
+        Map<Boolean, List<Integer>> primeNonPrimeList = UtilityClass.getPrimeNumbersListWithCustomCollector(1000000);
+        primeNonPrimeList.forEach((isPrime, list) -> {
+            System.out.println(isPrime ? "Prime" : "Non prime");
+            System.out.println(list);
+        } );
+    }
+
+    /**
+     * <h3>testPerfomanceOfPrimeNumberFinders</h3>
+     * tests perfomance of prime number finders with and without {@link PrimeNumbersCollector}
+     */
+
+    @Test
+    public void testPerfomanceOfPrimeNumberFinders(){
+        UtilityClass.testPerfomanceofWithAndWithoutCusomtCollector(UtilityClass::getPrimeNumbersList, "getPrimeNumbersList");
+        UtilityClass.testPerfomanceofWithAndWithoutCusomtCollector(UtilityClass::getPrimeNumbersListWithCustomCollector,"getPrimeNumbersListWithCustomCollector");
     }
 }
