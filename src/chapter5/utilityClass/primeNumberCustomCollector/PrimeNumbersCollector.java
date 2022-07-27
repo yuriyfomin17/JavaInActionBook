@@ -20,6 +20,12 @@ public class PrimeNumbersCollector implements Collector<Integer,
         }};
     }
 
+    /**
+     * <h3>accumulator<h3/>
+     * is why {@link PrimeNumbersCollector} perfoms faster then normal accumulator
+     * Accumulator has access to intermidiate results hence it while {@link Collector} doesn't have this access
+     */
+
     @Override
     public BiConsumer<Map<Boolean, List<Integer>>, Integer> accumulator() {
         return (Map<Boolean, List<Integer>> acc, Integer candidate) -> acc.get(UtilityClass.isNumberPrimeFromCurrentCandidates(acc.get(true), candidate)).add(candidate);
