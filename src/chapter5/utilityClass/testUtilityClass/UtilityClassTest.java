@@ -83,7 +83,7 @@ public class UtilityClassTest {
 
     @Test
     public void testPartitioningByPrimeNonPrimeCustomCollector(){
-        Map<Boolean, List<Integer>> primeNonPrimeList = UtilityClass.getPrimeNumbersListWithCustomCollector(1000000);
+        Map<Boolean, List<Integer>> primeNonPrimeList = UtilityClass.getPrimeNumbersListWithCustomCollector(100);
         primeNonPrimeList.forEach((isPrime, list) -> {
             System.out.println(isPrime ? "Prime" : "Non prime");
             System.out.println(list);
