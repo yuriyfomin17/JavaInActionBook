@@ -31,6 +31,12 @@ public class PrimeNumbersCollector implements Collector<Integer,
         return (Map<Boolean, List<Integer>> acc, Integer candidate) -> acc.get(UtilityClass.isNumberPrimeFromCurrentCandidates(acc.get(true), candidate)).add(candidate);
     }
 
+    /**
+     * <h3>combiner</h3>
+     * is used here for parallel execution. In case of parallel execution combiner should just combine to maps into one.
+     * However, we can't do that in case of Prime Number Finder as it has mutual state. Hence, it will produce incorrect result.
+     * Combiner here was added just for completeness.
+     */
     @Override
     public BinaryOperator<Map<Boolean, List<Integer>>> combiner() {
         return (Map<Boolean, List<Integer>> map1,
