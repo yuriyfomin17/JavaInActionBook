@@ -1,4 +1,4 @@
-package chapt7.utilityClass;
+package chapt7.UtilityClass;
 
 import java.util.function.Function;
 import java.util.stream.LongStream;

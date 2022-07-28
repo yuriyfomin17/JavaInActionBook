@@ -1,6 +1,6 @@
-package chapt7.test;
+package chapt7.UtilityClass.test;
 
-import chapt7.utilityClass.UtilityClass;
+import chapt7.UtilityClass.UtilityClass;
 import org.junit.jupiter.api.Test;
 
 public class TestUtilityClass {
