@@ -1,10 +1,13 @@
-package chapt7.WordCounter.test;
+package chapter7.WordCounter.test;
 
-import chapt7.WordCounter.WordCounter;
+import chapter7.WordCounter.WordCounter;
+import chapter7.WordCounter.WordCounterSplitarator;
 import org.junit.jupiter.api.Test;
 
+import java.util.Spliterator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class TestWordCounter {
     private final String TEXT = " Nel mezzo del cammin di nostra vita " +
@@ -24,6 +27,18 @@ public class TestWordCounter {
     @Test
     public void testWordCounterParallel(){
         Stream<Character> characterStream = IntStream.range(0, TEXT.length()).mapToObj(TEXT::charAt);
+        WordCounter wordCounter =  characterStream.parallel().reduce(
+                new WordCounter(0, true),
+                WordCounter::accumulate,
+                WordCounter::combine
+        );
+        System.out.println("Word count in parallel manner:" + wordCounter.getCounter() );
+    }
+
+    @Test
+    public void testWordCounterParallelSpitarator(){
+        Spliterator<Character> spliterator = new WordCounterSplitarator(TEXT);
+        Stream<Character> characterStream = StreamSupport.stream(spliterator, true);
         WordCounter wordCounter =  characterStream.parallel().reduce(
                 new WordCounter(0, true),
                 WordCounter::accumulate,

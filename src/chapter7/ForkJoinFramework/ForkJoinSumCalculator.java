@@ -1,4 +1,4 @@
-package chapt7.ForkJoinFramework;
+package chapter7.ForkJoinFramework;
 
 public class ForkJoinSumCalculator extends java.util.concurrent.RecursiveTask<Long> {
     private final long[] numbers;

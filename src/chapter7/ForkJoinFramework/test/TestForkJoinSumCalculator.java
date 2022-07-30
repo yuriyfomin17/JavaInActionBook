@@ -1,6 +1,6 @@
-package chapt7.ForkJoinFramework.test;
+package chapter7.ForkJoinFramework.test;
 
-import chapt7.ForkJoinFramework.ForkJoinSumCalculator;
+import chapter7.ForkJoinFramework.ForkJoinSumCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ForkJoinPool;

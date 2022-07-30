@@ -1,4 +1,4 @@
-package chapt7.WordCounter;
+package chapter7.WordCounter;
 
 public class WordCounter {
     private final int counter;
