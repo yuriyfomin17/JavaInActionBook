@@ -6,7 +6,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -64,7 +63,7 @@ public class BestPriceFinder {
      * calling next
      */
 
-    public List<String> findPricesInCompletableFutureList(List<Shop> shopList, String product){
+    public List<String> findPricesInCompletableFuturesIneffective(List<Shop> shopList, String product){
         return  shopList
                 .stream().map(shop -> CompletableFuture.supplyAsync(() -> shop.getName() + " price is " + shop.getPrice(product), createExecutor(shopList.size()) ))
                 .map(CompletableFuture::join)

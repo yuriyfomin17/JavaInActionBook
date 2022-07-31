@@ -5,6 +5,8 @@ import chapter11.bestPriceFinder.BestPriceFinder;
 import chapter11.util.UtilClass;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class BestPriceFinderTest {
     private static final BestPriceFinder SHOP_API = new BestPriceFinder();
     private static final String PRODUCT_NAME = "Iphone Pro Max Super Duper Cool 100500s";
@@ -39,6 +41,7 @@ public class BestPriceFinderTest {
 
     @Test
     public void testFindPriceWithDiscount(){
-        RANDOM_SHOP.createFutureForPriceLessVerbose(PRODUCT_NAME);
+        List<String> priceWithDiscount = SHOP_API.findPricesInCompletableFutures(BestPriceFinder.generateShops(10), PRODUCT_NAME);
+        priceWithDiscount.forEach(System.out::println);
     }
 }
