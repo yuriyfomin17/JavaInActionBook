@@ -33,9 +33,17 @@ public class Shop {
         return futurePrice;
     }
 
-    public Future<Double> getPriceAsyncLessVerbose(String product) {
-        return CompletableFuture.supplyAsync(() -> calculatePrice(product));
+    public Future<String> createFutureForPriceLessVerbose(String product) {
+        return CompletableFuture.supplyAsync(() -> getPriceWithDiscount(product));
     }
+
+    public String getPriceWithDiscount(String product) {
+        return String.format("%s:%.2f:%s", name, this.getPrice(product), Discount.getRandomCode());
+    }
+    public String getPriceWithoutDiscount(String product){
+        return String.format("%s price is %2f", this.getName(), this.getPrice(product));
+    }
+
 
     public double getPrice(String product) {
         return calculatePrice(product);

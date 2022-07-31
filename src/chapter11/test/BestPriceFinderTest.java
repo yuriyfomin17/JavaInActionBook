@@ -14,6 +14,7 @@ public class BestPriceFinderTest {
     public void testFindPrices() {
         System.out.println("Measure API executed sequentially");
         UtilClass.measurePerfomance(SHOP_API::findPrices, PRODUCT_NAME, BestPriceFinder.generateShops(5));
+
         System.out.println();
         System.out.println("Measure API executed in parallel");
         UtilClass.measurePerfomance(SHOP_API::findPricesInParallel, PRODUCT_NAME, BestPriceFinder.generateShops(100));
@@ -34,5 +35,10 @@ public class BestPriceFinderTest {
     @Test
     public void getAvailableThreadsInPool(){
         UtilClass.getAvailableThreadsInPool();
+    }
+
+    @Test
+    public void testFindPriceWithDiscount(){
+        RANDOM_SHOP.createFutureForPriceLessVerbose(PRODUCT_NAME);
     }
 }

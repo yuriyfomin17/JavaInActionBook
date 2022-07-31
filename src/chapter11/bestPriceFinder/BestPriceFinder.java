@@ -6,6 +6,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,7 +27,7 @@ public class BestPriceFinder {
     }
 
     public List<String> findPricesInParallel(List<Shop> shopList, String product){
-        return shopList.parallelStream().map(shop -> String.format("%s price is %2f", shop.getName(), shop.getPrice(product)) ).collect(Collectors.toList());
+        return shopList.parallelStream().map(shop -> shop.getPriceWithDiscount(product) ).collect(Collectors.toList());
     }
 
     /**
@@ -36,9 +37,12 @@ public class BestPriceFinder {
      * <br><br/>
      * <h3>findPricesInParalle</h3>
      *
-     * as we only have 16 available threads in thread pool (found from {@link chapter5.utilityClass.UtilityClass}).
+     * as we only have 16 available threads in thread pool (found from {@link chapter5.utilityClass.UtilityClass}.
      *
-     * Hence, if we have only 16 shops then <h3>findPricesInParallel</h3> will work with same speed as
+     * Hence, if we have only 16 shops then
+     * <br><br/>
+     * <h3>findPricesInParallel</h3>
+     * will work with same speed as
      * <br><br/>
      * <h3>findPricesInCompletableFutures</h3>
      *
@@ -48,7 +52,7 @@ public class BestPriceFinder {
      */
     public  List<String> findPricesInCompletableFutures(List<Shop> shopList, String product){
         List<CompletableFuture<String>> priceFutures = shopList
-                .stream().map(shop -> CompletableFuture.supplyAsync(() -> shop.getName() + " price is " + shop.getPrice(product), createExecutor(shopList.size()) )).toList();
+                .stream().map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceWithDiscount(product), createExecutor(shopList.size()) )).toList();
 
         return priceFutures.stream()
                 .map(CompletableFuture::join)
