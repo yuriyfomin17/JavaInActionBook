@@ -24,6 +24,11 @@ public class BestPriceFinderTest {
         System.out.println();
         System.out.println("Measure API executed using CompletableFutures");
         UtilClass.measurePerfomance(SHOP_API::findPricesInCompletableFutures, PRODUCT_NAME, BestPriceFinder.generateShops(100));
+
+        System.out.println();
+        System.out.println("Measre API executed using CompletableFutures on each completion");
+        SHOP_API.findPricesInCompletableFuturesOnEachCompletion(BestPriceFinder.generateShops(100), PRODUCT_NAME);
+
     }
 
     @Test
@@ -43,5 +48,11 @@ public class BestPriceFinderTest {
     public void testFindPriceWithDiscount(){
         List<String> priceWithDiscount = SHOP_API.findPricesInCompletableFutures(BestPriceFinder.generateShops(10), PRODUCT_NAME);
         priceWithDiscount.forEach(System.out::println);
+    }
+
+    @Test
+    public void testFindPricesWithQuote(){
+        List<String> pricesWithQuote = SHOP_API.findPrices(BestPriceFinder.generateShops(10), PRODUCT_NAME);
+        pricesWithQuote.forEach(System.out::println);
     }
 }

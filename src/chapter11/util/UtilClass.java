@@ -3,14 +3,17 @@ package chapter11.util;
 import chapter11.asyncAPI.Shop;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class UtilClass<T> {
+    private static Random RANDOM = new Random();
     public static void delay(){
+        int randomDelay = 500 + RANDOM.nextInt(2000);
         try{
-            Thread.sleep(1000L);
+            Thread.sleep(randomDelay);
         } catch (InterruptedException interruptedException){
             throw new RuntimeException(interruptedException);
         }
