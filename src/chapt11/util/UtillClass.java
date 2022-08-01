@@ -37,12 +37,15 @@ public class UtillClass {
         return Stream.generate(() -> new ShopQuote(RandomStringUtils.randomAlphabetic(5), productName)).limit(size).toList();
     }
 
-
     public static List<DiscountQuote> generateRandomDiscountQuotes(List<ShopQuote> shopQuoteList) {
         return shopQuoteList.stream().map(DiscountQuote::new).toList();
     }
 
     public static void getAvailableThreadsInPool() {
         System.out.println("Available threads in pool:" + Runtime.getRuntime().availableProcessors());
+    }
+
+    public static void main(String[] args) {
+        getAvailableThreadsInPool();
     }
 }

@@ -19,20 +19,20 @@ public class TestShopApiConsumer {
 
     @Test
     public void testGetDiscountQuoteFromShopQuoteList() {
-        ShopAPIConsumer.getDiscountQutoesFromShopQuotes(16, PRODUCT_NAME);
+        ShopAPIConsumer.getDiscountQutoesFromShopQuotes(100, PRODUCT_NAME);
     }
 
     @Test
     public void testGetDiscountQutoeCompletableFutures() {
-        ShopAPIConsumer.getDiscountQuotesFromShopQuotesUsingCompletableFutures(16, PRODUCT_NAME);
+        ShopAPIConsumer.getDiscountQuotesFromShopQuotesUsingCompletableFutures(100, PRODUCT_NAME);
     }
     @Test
     public void testGetDiscountQuoteCompletableFuturesAny(){
-        ShopAPIConsumer.getAnyDiscountQuotesFromShopQuotesUsingCompletableFutures(16, PRODUCT_NAME);
+        ShopAPIConsumer.getAnyDiscountQuotesFromShopQuotesUsingCompletableFutures(100, PRODUCT_NAME);
     }
     @Test
     public void testGetDiscountQuoteCopletableFuturesAll(){
-        ShopAPIConsumer.getAllDiscountQuotesFromShopQuotesUsingCompletableFutures(16, PRODUCT_NAME);
+        ShopAPIConsumer.getAllDiscountQuotesFromShopQuotesUsingCompletableFutures(100, PRODUCT_NAME);
     }
 
 }

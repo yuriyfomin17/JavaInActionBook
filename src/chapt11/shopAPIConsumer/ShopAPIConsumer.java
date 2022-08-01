@@ -4,7 +4,6 @@ import chapt11.shopAPI.DiscountQuote;
 import chapt11.shopAPI.ShopQuote;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.lang.reflect.Array;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -13,7 +12,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public class ShopAPIConsumer<T> {
+public class ShopAPIConsumer {
     private static final int THREAD_LIMIT = 100;
 
     public static void getShopQuoteList(int shopQuoteSize, String productName) {
