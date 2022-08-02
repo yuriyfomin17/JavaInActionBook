@@ -1,8 +1,8 @@
-package chapt11.shopAPIConsumer;
+package chapter11.shopAPIConsumer;
 
-import chapt11.shopAPI.CurrencyConverter;
-import chapt11.shopAPI.DiscountQuote;
-import chapt11.shopAPI.ShopQuote;
+import chapter11.shopAPI.CurrencyConverter;
+import chapter11.shopAPI.DiscountQuote;
+import chapter11.shopAPI.ShopQuote;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.List;

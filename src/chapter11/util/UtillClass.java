@@ -1,12 +1,11 @@
-package chapt11.util;
+package chapter11.util;
 
-import chapt11.shopAPI.DiscountQuote;
-import chapt11.shopAPI.ShopQuote;
+import chapter11.shopAPI.DiscountQuote;
+import chapter11.shopAPI.ShopQuote;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;

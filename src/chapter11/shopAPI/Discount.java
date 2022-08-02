@@ -1,4 +1,4 @@
-package chapt11.shopAPI;
+package chapter11.shopAPI;
 
 import java.util.List;
 import java.util.Random;

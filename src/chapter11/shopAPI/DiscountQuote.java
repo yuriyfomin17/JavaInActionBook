@@ -1,6 +1,6 @@
-package chapt11.shopAPI;
+package chapter11.shopAPI;
 
-import chapt11.util.UtillClass;
+import chapter11.util.UtillClass;
 
 public class DiscountQuote {
     private final String shopName;

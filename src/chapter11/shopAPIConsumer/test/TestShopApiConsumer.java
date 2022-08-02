@@ -1,6 +1,6 @@
-package chapt11.shopAPIConsumer.test;
+package chapter11.shopAPIConsumer.test;
 
-import chapt11.shopAPIConsumer.ShopAPIConsumer;
+import chapter11.shopAPIConsumer.ShopAPIConsumer;
 import org.junit.jupiter.api.Test;
 
 public class TestShopApiConsumer {

@@ -1,8 +1,8 @@
-package chapt11.shopAPI.test;
+package chapter11.shopAPI.test;
 
-import chapt11.shopAPI.DiscountQuote;
-import chapt11.shopAPI.ShopQuote;
-import chapt11.util.UtillClass;
+import chapter11.shopAPI.DiscountQuote;
+import chapter11.shopAPI.ShopQuote;
+import chapter11.util.UtillClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
