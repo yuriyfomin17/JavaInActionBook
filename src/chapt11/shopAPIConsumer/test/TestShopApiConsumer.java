@@ -16,6 +16,10 @@ public class TestShopApiConsumer {
     public void testGetShopQuoteCompletableFutures() {
         ShopAPIConsumer.getShopQuoteListUsingCompletableFutures(16, PRODUCT_NAME);
     }
+    @Test
+    public void testGetShopQuotesPricesInEurUsingCompletableFutures(){
+        ShopAPIConsumer.getShopQuotesPricesInEurUsingCompletableFutures(100, PRODUCT_NAME);
+    }
 
     @Test
     public void testGetDiscountQuoteFromShopQuoteList() {
